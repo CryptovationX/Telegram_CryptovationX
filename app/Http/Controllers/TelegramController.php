@@ -12,19 +12,19 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        $msg = array();
-        $msg['id'] = $info['message']['from']['id'];
-        $msg['username'] = $info['message']['from']['username'];
-        $msg['firstname'] = $info['message']['from']['first_name'];
-        $msg['lastname'] = $info['message']['from']['last_name'];
+        // $msg = array();
+        // $msg['id'] = $info['message']['from']['id'];
+        // $msg['username'] = $info['message']['from']['username'];
+        // $msg['firstname'] = $info['message']['from']['first_name'];
+        // $msg['lastname'] = $info['message']['from']['last_name'];
 
-        if ($info['message']['from']['is_bot']==false) {
-            $msg['bot']='false';
-        } else {
-            $msg['bot']='true';
-        }
+        // if ($info['message']['from']['is_bot']==false) {
+        //     $msg['bot']='false';
+        // } else {
+        //     $msg['bot']='true';
+        // }
         
-        $msg['text'] = $info['message']['text'];
+        // $msg['text'] = $info['message']['text'];
 
         $message = array();
         $message['chat_id']='-1001319789908';
