@@ -14,7 +14,7 @@ class TelegramController extends Controller
 
         $msg = array();
         // $msg['username'] = ['message']['from']['username'];
-        $msg['firstname'] = ['message_id'];
+        $msg['firstname'] = ['update_id'];
         // $msg['bot'] = ['message']['from']['is_bot'];
         // $msg['text'] = ['message']['chat']['text'];
 
