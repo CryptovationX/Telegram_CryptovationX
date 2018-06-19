@@ -10,7 +10,7 @@ class TelegramController extends Controller
     public function receive(Request $request)
     {
         $message = array();
-        $message['chat_id']='-1001319789908';
+        $message['chat_id']='527317977';
         $message['text']='Hello';
         Telegram::sendMessage($message);
     }
@@ -21,5 +21,10 @@ class TelegramController extends Controller
         $message['url']='https://telegrambot.cryptovationx.io/webhooks';
         $x = Telegram::setWebhook($message);
         dd($x);
+
+        // $message = array();
+        // $message['chat_id']='527317977';
+        // $message['text']='Hello';
+        // Telegram::sendMessage($message);
     }
 }
