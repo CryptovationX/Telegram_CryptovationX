@@ -9,9 +9,12 @@ class TelegramController extends Controller
 {
     public function receive(Request $request)
     {
+        $json = $request->getContent();
+        $info = json_decode($json, true);
+
         $message = array();
         $message['chat_id']='527317977';
-        $message['text']=$request;
+        $message['text']=$info;
         Telegram::sendMessage($message);
     }
 
