@@ -9,16 +9,16 @@ class TelegramController extends Controller
 {
     public function receive(Request $request)
     {
-        $bot = array();
-        $bot['chat_id'] = '-284738772';
-        $bot['text'] = 'Text received';
-
-        Telegram::sendMessage($bot);
+        $message = array();
+        $message['chat_id']='-1001319789908';
+        $message['text']='Hello';
+        Telegram::sendMessage($message);
     }
 
     public function test()
     {
-        $message['chat_id']='-284738772';
+        $message = array();
+        $message['chat_id']='-1001319789908';
         $message['text']='Hello';
         Telegram::sendMessage($message);
     }
