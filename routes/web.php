@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test', "Test@test");
+
+Route::post('/502641673:AAEcO_1sQvAHRyXp889HSbRZEE1qIVrgeHM', "TelegramController@receive");
