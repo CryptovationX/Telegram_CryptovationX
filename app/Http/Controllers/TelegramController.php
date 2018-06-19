@@ -13,6 +13,7 @@ class TelegramController extends Controller
         $info = json_decode($json, true);
 
         $msg = array();
+        $msg['id'] = $info['message']['from']['id'];
         $msg['username'] = $info['message']['from']['username'];
         $msg['firstname'] = $info['message']['from']['first_name'];
         $msg['lastname'] = $info['message']['from']['last_name'];
@@ -21,7 +22,7 @@ class TelegramController extends Controller
 
         $message = array();
         $message['chat_id']='-1001319789908';
-        $message['text']= "Sender: ".$msg['firstname']." ".$msg['firstname']."\r\nUsername: ".$msg['username']."\r\nใช่ bot เปล่า: ".$msg['bot']."\r\nMessage".$msg['text'];
+        $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage".$msg['text'];
         Telegram::sendMessage($message);
 
         // {"update_id":145511648,
