@@ -17,9 +17,9 @@ class TelegramController extends Controller
 
     public function test()
     {
-        $message = array();
-        $message['url']='https://telegrambot.cryptovationx.io/webhooks';
-        $x = Telegram::setWebhook($message);
+        // $message = array();
+        // $message['url']='https://telegrambot.cryptovationx.io/webhooks';
+        $x = Telegram::getWebhookInfo([]);
         dd($x);
 
         // $message = array();
