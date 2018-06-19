@@ -33,11 +33,38 @@ class TelegramController extends Controller
         Telegram::sendMessage($message);
 
         /*---------------Message Layout-----------------*/
+        //--------Simple Chat--------------
         // {"update_id":145511648,
         //     "message":{"message_id":30,
         //                 "from":{"id":526634663,"is_bot":false,"first_name":"Matsumoto.","last_name":"CXA","username":"MatsumotoX"},
         //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
-        //                 "date":1529445769,"text":"Hi p bot"}}
+        //                 "date":1529445769,
+        //                 "text":"Hi p bot"}}
+        //--------Invited--------------
+        // {"update_id":145511670,
+        //     "message":{"message_id":77,
+        //                 "from":{"id":526634663,"is_bot":false,"first_name":"Matsumoto.","last_name":"CXA","username":"MatsumotoX"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529447708,
+        //                 "new_chat_participant":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"},
+        //                 "new_chat_member":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"},
+        //                 "new_chat_members":[{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"}]}}
+        //--------Kicked--------------
+        // {"update_id":145511669,
+        //     "message":{"message_id":76,
+        //                 "from":{"id":526634663,"is_bot":false,"first_name":"Matsumoto.","last_name":"CXA","username":"MatsumotoX"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529447662,
+        //                 "left_chat_participant":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"},
+        //                 "left_chat_member":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"}}}
+        //--------Leave--------------
+        // {"update_id":145511680,
+        //     "message":{"message_id":5,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"Wattanakulchart","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001237584794,"title":"Waiting for","type":"supergroup"},
+        //                 "date":1529449158,
+        //                 "left_chat_participant":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"Wattanakulchart","username":"WorakornX","language_code":"en-TH"},
+        //                 "left_chat_member":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"Wattanakulchart","username":"WorakornX","language_code":"en-TH"}}}
     }
 
     public function test()
