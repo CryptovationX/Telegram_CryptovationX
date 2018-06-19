@@ -13,7 +13,7 @@ class TelegramController extends Controller
         $info = json_decode($json, true);
 
         $message = array();
-        $message['chat_id']='527317977';
+        $message['chat_id']='-1001319789908';
         $message['text']=$json;
         Telegram::sendMessage($message);
     }
