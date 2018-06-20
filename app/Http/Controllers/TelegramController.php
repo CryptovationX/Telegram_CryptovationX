@@ -69,10 +69,16 @@ class TelegramController extends Controller
 
     public function test()
     {
+        $message = array();
+        $message['chat_id']='-1001319789908';
+        $message['text']='Test';
+        // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
+        Telegram::sendMessage($message);
+
         // $message = array();
         // $message['url']='https://telegrambot.cryptovationx.io/webhooks';
-        $x = Telegram::getWebhookInfo([]);
-        dd($x);
+        // $x = Telegram::setWebhook([]);
+        // dd($x);
 
         // $message = array();
         // $message['chat_id']='527317977';
