@@ -33,7 +33,23 @@ class TelegramController extends Controller
                                 if (array_key_exists('voice', $info['message'])) {
                                     $type = "voice";
                                 } else {
-                                    $type = "unknown\r\nMessage\r\n".$json;
+                                    if (array_key_exists('video_note', $info['message'])) {
+                                        $type = "video";
+                                    } else {
+                                        if (array_key_exists('location', $info['message'])) {
+                                            $type = "location";
+                                        } else {
+                                            if (array_key_exists('document', $info['message'])) {
+                                                $type = "document";
+                                            } else {
+                                                if (array_key_exists('contact', $info['message'])) {
+                                                    $type = "contact";
+                                                } else {
+                                                    $type = "unknown\r\nMessage\r\n".$json;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -145,6 +161,36 @@ class TelegramController extends Controller
         // {"update_id":271683418,
         //     "message":{"message_id":205,
         //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
-        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},"date":1529561021,
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529561021,
         //                 "voice":{"duration":1,"mime_type":"audio/ogg","file_id":"AwADBQADJgADsdhYVfc01ObqFg9_Ag","file_size":2889}}}
+        //--------Video--------------
+        // {"update_id":271683422,
+        //     "message":{"message_id":213,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529561784,
+        //                 "video_note":{"duration":2,"length":240,"thumb":{"file_id":"AAQFABOCYdYyAATP8g_ULDx70-8_AAIC","file_size":2340,"width":90,"height":90},
+        //                 "file_id":"DQADBQADKAADsdhYVbkDQ7_p99NvAg","file_size":109288}}}
+        //--------Location--------------
+        // {"update_id":271683424,
+        //     "message":{"message_id":217,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529561866,
+        //                 "location":{"latitude":13.674550,"longitude":100.534625}}}
+        //--------Document--------------
+        // {"update_id":271683425,
+        //     "message":{"message_id":219,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529561885,
+        //                 "document":{"file_name":"\u0e2b\u0e19\u0e31\u0e07\u0e2a\u0e37\u0e2d\u0e23\u0e31\u0e1a\u0e23\u0e2d\u0e07\u0e01\u0e32\u0e23\u0e1c\u0e48\u0e32\u0e19\u0e07\u0e32\u0e19.pdf","mime_type":"application/pdf","file_id":"BQADBQADKQADsdhYVe_conWOrBsAAQI","file_size":200644}}}
+        //--------Contact--------------
+        // {"update_id":271683426,
+        //     "message":{"message_id":221,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529561907,
+        //                 "contact":{"phone_number":"0815432345","first_name":"Wundzen \ud83d\udc8e"}}}
 }
