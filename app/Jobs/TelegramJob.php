@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Http\Controllers\TelegramController;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Http\Controllers\TelegramUserController;
 
 class TelegramJob implements ShouldQueue
 {
@@ -28,7 +29,7 @@ class TelegramJob implements ShouldQueue
      */
     public function handle()
     {
-        $telegram = new TelegramController;
+        $telegram = new TelegramUserController;
         $telegram->test();
     }
 }

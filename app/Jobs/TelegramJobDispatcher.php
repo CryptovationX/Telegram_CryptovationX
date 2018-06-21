@@ -28,7 +28,7 @@ class TelegramJobDispatcher implements ShouldQueue
      */
     public function handle()
     {
-        TelegramJobDispatcher::dispatch()->delay(Carbon::now()->addSeconds(1));
+        TelegramJobDispatcher::dispatch()->delay(Carbon::now()->addMinutes(2));
         TelegramJob::dispatch();
     }
 }

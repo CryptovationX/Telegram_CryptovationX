@@ -10,7 +10,8 @@
         "irazasyed/telegram-bot-sdk": "^2.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "pda/pheanstalk": "^3.1"
+        "pda/pheanstalk": "^3.1",
+        "danog/madelineproto":"dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -19,6 +20,15 @@
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/danog/phpseclib"
+        }, {
+            "type": "git",
+            "url": "https://github.com/danog/MadelineProto"
+        }
+    ],
     "autoload": {
         "classmap": [
             "database/seeds",

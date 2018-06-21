@@ -81,7 +81,26 @@ class TelegramController extends Controller
 
     public function test()
     {
+        $MadelineProto = new \danog\MadelineProto\API('session.madeline');
+        $MadelineProto->start();
+        // $MadelineProto->logout();
 
+        // $me = $MadelineProto->get_self();
+
+        // \danog\MadelineProto\Logger::log($me);
+
+        // if (!$me['bot']) {
+        //     $MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => "Hi!\nThanks for creating MadelineProto! <3"]);
+        //     $MadelineProto->channels->joinChannel(['channel' => '@MadelineProto']);
+
+        //     try {
+        //         $MadelineProto->messages->importChatInvite(['hash' => 'https://t.me/joinchat/Bgrajz6K-aJKu0IpGsLpBg']);
+        //     } catch (\danog\MadelineProto\RPCErrorException $e) {
+        //     }
+        // }
+        // $x = $MadelineProto->messages->getHistory(['peer' => 'https://t.me/joinchat/H2472U-8T_UQ9CX-YqgjKg', 'offset_id' => 400, 'offset_date' => 0, 'add_offset' => 0, 'limit' => 100, 'max_id' => 0, 'min_id' => 0, 'hash' => 0, ]);
+
+        dd($x);
 
         // $message = array();
         // $message['chat_id']='-1001319789908';
@@ -89,10 +108,11 @@ class TelegramController extends Controller
         // // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
         // Telegram::sendMessage($message);
 
-        $message = array();
-        $message['url']='https://telegrambot.cryptovationx.io/webhooks';
-        $x = Telegram::setWebhook($message);
-        dd($x);
+        // $message = array();
+        // $message['chat_id']='-1001337741301';
+        // $message['user_id']='410833241';
+        // $x = Telegram::getChatMember($message);
+        // dd($x);
 
         // $message = array();
         // $message['chat_id']='527317977';

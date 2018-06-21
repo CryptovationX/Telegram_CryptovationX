@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', "TelegramController@test");
+Route::any('/test', "TelegramController@test");
+Route::any('/getuser', "TelegramUserController@test");
 
 Route::post('/webhooks', "TelegramController@receive");
