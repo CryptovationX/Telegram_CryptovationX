@@ -12,13 +12,13 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        if (array_key_exists('text', $info)) {
+        if (array_key_exists('text', $info['message'])) {
             $type = "text";
         } else {
-            if (array_key_exists('new_chat_member', $info) || array_key_exists('new_chat_members', $info)) {
+            if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
                 $type = "join";
             } else {
-                if (array_key_exists('left_chat_member', $info)) {
+                if (array_key_exists('left_chat_member', $info['message'])) {
                     $type = "left";
                 } else {
                     $type = "unknown";
