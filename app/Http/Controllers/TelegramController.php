@@ -12,16 +12,32 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        if (array_key_exists('text', $info['message'])) {
-            $type = "text";
+        if (array_key_exists('pinned_message', $info['message'])) {
+            $type = "pin";
         } else {
-            if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
-                $type = "join";
+            if (array_key_exists('text', $info['message'])) {
+                $type = "text";
             } else {
-                if (array_key_exists('left_chat_member', $info['message'])) {
-                    $type = "left";
+                if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
+                    $type = "join";
                 } else {
-                    $type = "unknown\r\nMessage\r\n".$json;
+                    if (array_key_exists('left_chat_member', $info['message'])) {
+                        $type = "left";
+                    } else {
+                        if (array_key_exists('sticker', $info['message'])) {
+                            $type = "sticker";
+                        } else {
+                            if (array_key_exists('photo', $info['message'])) {
+                                $type = "photo";
+                            } else {
+                                if (array_key_exists('voice', $info['message'])) {
+                                    $type = "voice";
+                                } else {
+                                    $type = "unknown\r\nMessage\r\n".$json;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -45,8 +61,31 @@ class TelegramController extends Controller
         $message['text']=$type;
         // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
         Telegram::sendMessage($message);
+    }
 
-        /*---------------Message Layout-----------------*/
+    public function test()
+    {
+
+
+        // $message = array();
+        // $message['chat_id']='-1001319789908';
+        // $message['text']='Test';
+        // // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
+        // Telegram::sendMessage($message);
+
+        $message = array();
+        $message['url']='https://telegrambot.cryptovationx.io/webhooks';
+        $x = Telegram::setWebhook($message);
+        dd($x);
+
+        // $message = array();
+        // $message['chat_id']='527317977';
+        // $message['text']='Hello';
+        // Telegram::sendMessage($message);
+    }
+
+    
+    /*---------------Message Layout-----------------*/
         // --------Simple Chat--------------
         // {"update_id":145511648,
         //     "message":{"message_id":30,
@@ -79,26 +118,33 @@ class TelegramController extends Controller
         //                 "date":1529449158,
         //                 "left_chat_participant":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"Wattanakulchart","username":"WorakornX","language_code":"en-TH"},
         //                 "left_chat_member":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"Wattanakulchart","username":"WorakornX","language_code":"en-TH"}}}
-    }
-
-    public function test()
-    {
-
-
-        // $message = array();
-        // $message['chat_id']='-1001319789908';
-        // $message['text']='Test';
-        // // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
-        // Telegram::sendMessage($message);
-
-        $message = array();
-        $message['url']='https://telegrambot.cryptovationx.io/webhooks';
-        $x = Telegram::setWebhook($message);
-        dd($x);
-
-        // $message = array();
-        // $message['chat_id']='527317977';
-        // $message['text']='Hello';
-        // Telegram::sendMessage($message);
-    }
+        //--------Sticker--------------
+        // {"update_id":271683412,
+        //     "message":{"message_id":193,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //                 "date":1529560890,
+        //                 "sticker":{"width":510,"height":512,"emoji":"\ud83d\udcaa","set_name":"TelegramGreatMinds","thumb":{"file_id":"AAQFABPqybEyAASsXyohLbHPkA44AQABAg","file_size":2602,"width":89,"height":90},"file_id":"CAADBQADHAADyIsGAAFzjQavel2uswI","file_size":39518}}}
+        //--------Pin--------------
+        // {"update_id":271683413,
+        //     "message":{"message_id":195,
+        //         "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //         "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //         "date":1529560911,
+        //         "pinned_message":{"message_id":193,"from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //         "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //         "date":1529560890,
+        //--------Photo--------------
+        // {"update_id":271683417,
+        // "message":{"message_id":203,
+        //             "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //             "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},
+        //             "date":1529561007,
+        //             "photo":[{"file_id":"AgADBQADb6gxG7HYWFXjxGdwHoDwJ1lN1TIABBjNJzY8dXTExVcBAAEC","file_size":834,"width":90,"height":48},{"file_id":"AgADBQADb6gxG7HYWFXjxGdwHoDwJ1lN1TIABBHoKP8osdpFxlcBAAEC","file_size":11591,"width":320,"height":171},{"file_id":"AgADBQADb6gxG7HYWFXjxGdwHoDwJ1lN1TIABCLh8oOZWm-7yFcBAAEC","file_size":55158,"width":800,"height":427},{"file_id":"AgADBQADb6gxG7HYWFXjxGdwHoDwJ1lN1TIABM380eM9qbstx1cBAAEC","file_size":100634,"width":1280,"height":684}]}}
+        //--------Voice--------------
+        // {"update_id":271683418,
+        //     "message":{"message_id":205,
+        //                 "from":{"id":527317977,"is_bot":false,"first_name":"Worakorn","last_name":"CXA","username":"WorakornX","language_code":"en-TH"},
+        //                 "chat":{"id":-1001319789908,"title":"CXABottesting","type":"supergroup"},"date":1529561021,
+        //                 "voice":{"duration":1,"mime_type":"audio/ogg","file_id":"AwADBQADJgADsdhYVfc01ObqFg9_Ag","file_size":2889}}}
 }
