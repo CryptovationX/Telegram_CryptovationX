@@ -21,7 +21,7 @@ class TelegramController extends Controller
                 if (array_key_exists('left_chat_member', $info['message'])) {
                     $type = "left";
                 } else {
-                    $type = "unknown";
+                    $type = "unknown\r\nMessage\r\n".$json;
                 }
             }
         }
@@ -83,16 +83,18 @@ class TelegramController extends Controller
 
     public function test()
     {
-        $message = array();
-        $message['chat_id']='-1001319789908';
-        $message['text']='Test';
-        // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
-        Telegram::sendMessage($message);
+
 
         // $message = array();
-        // $message['url']='https://telegrambot.cryptovationx.io/webhooks';
-        // $x = Telegram::setWebhook([]);
-        // dd($x);
+        // $message['chat_id']='-1001319789908';
+        // $message['text']='Test';
+        // // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
+        // Telegram::sendMessage($message);
+
+        $message = array();
+        $message['url']='https://telegrambot.cryptovationx.io/webhooks';
+        $x = Telegram::setWebhook($message);
+        dd($x);
 
         // $message = array();
         // $message['chat_id']='527317977';
