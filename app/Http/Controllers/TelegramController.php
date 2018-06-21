@@ -12,6 +12,20 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
+        if (array_key_exists('text', $info)) {
+            $type = "text";
+        } else {
+            if (array_key_exists('new_chat_member', $info) || array_key_exists('new_chat_members', $info)) {
+                $type = "join";
+            } else {
+                if (array_key_exists('left_chat_member', $info)) {
+                    $type = "left";
+                } else {
+                    $type = "unknown";
+                }
+            }
+        }
+
         // $msg = array();
         // $msg['id'] = $info['message']['from']['id'];
         // $msg['username'] = $info['message']['from']['username'];
@@ -28,12 +42,12 @@ class TelegramController extends Controller
 
         $message = array();
         $message['chat_id']='-1001319789908';
-        $message['text']=$json;
+        $message['text']=$type;
         // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
         Telegram::sendMessage($message);
 
         /*---------------Message Layout-----------------*/
-        //--------Simple Chat--------------
+        // --------Simple Chat--------------
         // {"update_id":145511648,
         //     "message":{"message_id":30,
         //                 "from":{"id":526634663,"is_bot":false,"first_name":"Matsumoto.","last_name":"CXA","username":"MatsumotoX"},
@@ -49,7 +63,7 @@ class TelegramController extends Controller
         //                 "new_chat_participant":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"},
         //                 "new_chat_member":{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"},
         //                 "new_chat_members":[{"id":613521920,"is_bot":true,"first_name":"Hellobot","username":"CXOhellobot"}]}}
-        //--------Kicked--------------
+        // //--------Kicked--------------
         // {"update_id":145511669,
         //     "message":{"message_id":76,
         //                 "from":{"id":526634663,"is_bot":false,"first_name":"Matsumoto.","last_name":"CXA","username":"MatsumotoX"},
