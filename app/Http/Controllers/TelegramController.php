@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Telegram;
+use GuzzleHttp\Client;
 
 class TelegramController extends Controller
 {
