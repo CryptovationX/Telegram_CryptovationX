@@ -44,7 +44,7 @@ class TelegramController extends Controller
                     // $message['text']=$client;
                     // Telegram::sendMessage(json_encode($message));
 
-                    $result = $client->get($url);
+                    // $result = $client->get($url);
 
                     $message['text']=$type;
                     Telegram::sendMessage(json_encode($result));
