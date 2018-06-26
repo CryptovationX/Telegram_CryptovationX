@@ -13,12 +13,12 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        if ($info !== "null"){
-        $message = array();
-        $message['chat_id']='-1001319789908';
-        $message['text']="Good!";
-        Telegram::sendMessage($message);
-        }
+        // if ($info !== "null"){
+        // $message = array();
+        // $message['chat_id']='-1001319789908';
+        // $message['text']="Good!";
+        // Telegram::sendMessage($message);
+        // }
         
         if (array_key_exists('pinned_message', $info['message'])) {
             $type = "pin";
