@@ -11,6 +11,7 @@ class TelegramController extends Controller
 {
     public function receive(Request $request)
     {
+        
         $json = $request->getContent();
         $info = json_decode($json, true);
 
@@ -30,8 +31,9 @@ class TelegramController extends Controller
                     
 
                     $chat_id = $info['message']['message_id'];
+                    $room_id = $info['message']['chat']['id'];
 
-                    $message['text']=$chat_id;
+                    $message['text']=$chat_id.$room_id;
                     Telegram::sendMessage($message);
 
                     $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
