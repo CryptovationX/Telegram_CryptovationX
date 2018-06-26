@@ -108,7 +108,7 @@ class TelegramController extends Controller
         $message['chat_id']='-1001319789908';
         $message['text']=$type;
         // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
-        Telegram::sendMessage($message);
+        // Telegram::sendMessage($message);
     }
 
     public function test()
