@@ -19,5 +19,3 @@ Route::any('/test', "TelegramController@test");
 Route::any('/getuser', "TelegramUserController@test");
 
 Route::any('/webhooks', "TelegramController@receive");
-
-Route::any('/done', "TelegramController@receive");
