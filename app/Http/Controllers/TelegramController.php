@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Telegram;
 use GuzzleHttp\Client;
+use function GuzzleHttp\json_encode;
 
 class TelegramController extends Controller
 {
@@ -13,8 +14,6 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        
-
         if (array_key_exists('pinned_message', $info['message'])) {
             $type = "pin";
         } else {
@@ -22,20 +21,32 @@ class TelegramController extends Controller
                 $type = "text";
             } else {
                 if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
-        //             $message = array();
-        // $message['chat_id']='-1001319789908';
-        // $message['text']=$json;
-        // Telegram::sendMessage($message);
                     $type = "join";
+
+                    $message = array();
+                    $message['chat_id']='-1001319789908';
+                    
+
                     $chat_id = $info['message']['message_id'];
-                    $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+
+                    $message['text']=$chat_id;
+                    Telegram::sendMessage(json_encode($message));
+
+                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                     $client = new Client(); 
+
+                    $message['text']=$client;
+                    Telegram::sendMessage(json_encode($message));
+
                     $result = $client->get($url);
+
+                    $message['text']=$type;
+                    Telegram::sendMessage(json_encode($result));
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
                         $type = "left";
                         $chat_id = $info['message']['message_id'];
-                        $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                        $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                         $client = new Client(); 
                         $result = $client->get($url);
                     } else {

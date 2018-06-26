@@ -11,8 +11,9 @@ class TelegramUserController extends Controller
 {
     public function test()
     {
-        $temp = TempId::find(1);
-
+        // $temp = TempId::find(1);
+        $users = $this->getUser(0);
+dd($user);
         $users = $this->getUser($temp->temp + 100);
         // dd($users['users']);
         foreach (array_reverse($users['messages']) as $key => $user) {
