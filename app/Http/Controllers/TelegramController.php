@@ -39,14 +39,14 @@ class TelegramController extends Controller
                     $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=".$room_id."&message_id=".$chat_id;
                     $message['text']=$url;
                     // Telegram::sendMessage($message);
-                    // $client = new Client(); 
+                    $client = new Client(); 
 
                     // $message['text']=$client;
                     // Telegram::sendMessage(json_encode($message));
 
-                    // $result = $client->get($url);
+                    $result = $client->get($url);
 
-                    // $message['text']=$type;
+                    $message['text']=$type;
                     // Telegram::sendMessage(json_encode($result));
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
@@ -106,9 +106,9 @@ class TelegramController extends Controller
 
         $message = array();
         $message['chat_id']='-1001319789908';
-        $message['text']=$type;
+        $message['text']="ok";
         // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
-        // Telegram::sendMessage($message);
+        Telegram::sendMessage($message);
     }
 
     public function test()
