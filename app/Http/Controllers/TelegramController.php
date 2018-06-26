@@ -13,11 +13,7 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        $message = array();
-        $message['chat_id']='-1001319789908';
-        $message['text']=$json;
-        Telegram::sendMessage($message);
-        sleep(5);
+        
 
         if (array_key_exists('pinned_message', $info['message'])) {
             $type = "pin";
@@ -26,11 +22,15 @@ class TelegramController extends Controller
                 $type = "text";
             } else {
                 if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
-                    $type = "join";
-                    $chat_id = $info['message']['message_id'];
-                    $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
-                    $client = new Client(); 
-                    $result = $client->get($url);
+                    $message = array();
+        $message['chat_id']='-1001319789908';
+        $message['text']=$json;
+        Telegram::sendMessage($message);
+                    // $type = "join";
+                    // $chat_id = $info['message']['message_id'];
+                    // $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                    // $client = new Client(); 
+                    // $result = $client->get($url);
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
                         $type = "left";
