@@ -37,8 +37,8 @@ class TelegramController extends Controller
                     $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                     $client = new Client(); 
 
-                    $message['text']=$client;
-                    Telegram::sendMessage(json_encode($message));
+                    // $message['text']=$client;
+                    // Telegram::sendMessage(json_encode($message));
 
                     $result = $client->get($url);
 
