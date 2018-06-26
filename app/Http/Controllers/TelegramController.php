@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Telegram;
 use GuzzleHttp\Client;
-use function GuzzleHttp\json_encode;
 
 class TelegramController extends Controller
 {
     public function receive(Request $request)
     {
-        
         $json = $request->getContent();
         $info = json_decode($json, true);
 
@@ -23,31 +21,10 @@ class TelegramController extends Controller
             } else {
                 if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
                     $type = "join";
-
-                    $message = array();
-                    $message['chat_id']='-1001319789908';
-                    $message['text']=$type;
-                    Telegram::sendMessage($message);
-                    
-
                     $chat_id = $info['message']['message_id'];
-                    $room_id = $info['message']['chat']['id'];
-
-                    $message['text']="Chat ID: ".$chat_id."\r\nRoom ID: ".$room_id;
-                    Telegram::sendMessage($message);
-
-                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=".$room_id."&message_id=".$chat_id;
-                    $message['text']=$url;
-                    // Telegram::sendMessage($message);
+                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                     $client = new Client(); 
-
-                    // $message['text']=$client;
-                    // Telegram::sendMessage(json_encode($message));
-
                     $result = $client->get($url);
-
-                    $message['text']=$type;
-                    // Telegram::sendMessage(json_encode($result));
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
                         $type = "left";
@@ -106,7 +83,7 @@ class TelegramController extends Controller
 
         $message = array();
         $message['chat_id']='-1001319789908';
-        $message['text']="ok";
+        $message['text']=$type;
         // $message['text']= "Sender: ".$msg['firstname']." ".$msg['lastname']." (ID:".$msg['id'].")\r\nUsername: ".$msg['username']."\r\nbot?: ".$msg['bot']."\r\nMessage: ".$msg['text'];
         Telegram::sendMessage($message);
     }
