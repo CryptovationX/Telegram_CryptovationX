@@ -15,7 +15,7 @@ class TelegramController extends Controller
 
         $message = array();
         $message['chat_id']='-1001319789908';
-        $message['text']=$info;
+        $message['text']=$json;
         Telegram::sendMessage($message);
         sleep(5);
 
