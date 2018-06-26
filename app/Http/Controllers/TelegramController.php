@@ -33,10 +33,10 @@ class TelegramController extends Controller
                     $chat_id = $info['message']['message_id'];
                     $room_id = $info['message']['chat']['id'];
 
-                    $message['text']=$chat_id.$room_id;
+                    $message['text']="Chat ID: ".$chat_id."\r\nRoom ID: ".$room_id;
                     Telegram::sendMessage($message);
 
-                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=".$room_id."&message_id=".$chat_id;
                     $client = new Client(); 
 
                     // $message['text']=$client;
