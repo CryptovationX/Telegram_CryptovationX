@@ -13,6 +13,13 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
+        if ($info !== "null"){
+        $message = array();
+        $message['chat_id']='-1001319789908';
+        $message['text']="Good!";
+        Telegram::sendMessage($message);
+        }
+        
         if (array_key_exists('pinned_message', $info['message'])) {
             $type = "pin";
         } else {
@@ -22,14 +29,14 @@ class TelegramController extends Controller
                 if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
                     $type = "join";
                     $chat_id = $info['message']['message_id'];
-                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                    $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                     $client = new Client(); 
                     $result = $client->get($url);
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
                         $type = "left";
                         $chat_id = $info['message']['message_id'];
-                        $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                        $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                         $client = new Client(); 
                         $result = $client->get($url);
                     } else {
