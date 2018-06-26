@@ -22,14 +22,14 @@ class TelegramController extends Controller
                 if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
                     $type = "join";
                     $chat_id = $info['message']['message_id'];
-                    $url = "https://api.telegram.org/bot619757502:AAF8yDVXRawuzLBHSsKGSTNv5evqWxwS4d4/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                    $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                     $client = new Client(); 
                     $result = $client->get($url);
                 } else {
                     if (array_key_exists('left_chat_member', $info['message'])) {
                         $type = "left";
                         $chat_id = $info['message']['message_id'];
-                        $url = "https://api.telegram.org/bot619757502:AAF8yDVXRawuzLBHSsKGSTNv5evqWxwS4d4/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                        $url = "https://api.telegram.org/bot619757502:AAHF5jD26Bd65SOdcqDgte0XO9N9g2GSmp0/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                         $client = new Client(); 
                         $result = $client->get($url);
                     } else {
