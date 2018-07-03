@@ -18,6 +18,7 @@ class TelegramController extends Controller
             if (array_key_exists('text', $info['message'])) {
                 $type = "text";
             }
+            return;
         }else{
             if (array_key_exists('pinned_message', $info['message'])) {
                 $type = "pin";
