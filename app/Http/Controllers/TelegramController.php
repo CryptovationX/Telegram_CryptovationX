@@ -42,6 +42,10 @@ class TelegramController extends Controller
                         } else {
                             if (array_key_exists('sticker', $info['message'])) {
                                 $type = "sticker";
+                                $chat_id = $info['message']['message_id'];
+                                $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001319789908&message_id=$chat_id";
+                                $client = new Client(); 
+                                $result = $client->get($url);
                             } else {
                                 if (array_key_exists('photo', $info['message'])) {
                                     $type = "photo";
