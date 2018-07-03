@@ -17,52 +17,6 @@ class TelegramController extends Controller
         if($user_id == "608732218" or $user_id == "527317977" or $user_id == "619149325" or $user_id == "435684060" or $user_id == "474078415" or $user_id == "301298858" or $user_id == "550041200" or $user_id == "471721523" or $user_id == "526634663" or $user_id == "177286367"){
             if (array_key_exists('text', $info['message'])) {
                 $type = "text";
-            }else{
-                if (array_key_exists('pinned_message', $info['message'])) {
-                    $type = "pin";
-                }else {
-                    if (array_key_exists('text', $info['message'])) {
-                        $type = "text";
-                    } else {
-                        if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
-                            $type = "join";
-                        } else {
-                            if (array_key_exists('left_chat_member', $info['message'])) {
-                                $type = "left";
-                            } else {
-                                if (array_key_exists('sticker', $info['message'])) {
-                                    $type = "sticker";
-                                } else {
-                                    if (array_key_exists('photo', $info['message'])) {
-                                        $type = "photo";
-                                    } else {
-                                        if (array_key_exists('voice', $info['message'])) {
-                                            $type = "voice";
-                                        } else {
-                                            if (array_key_exists('video_note', $info['message'])) {
-                                                $type = "video";
-                                            } else {
-                                                if (array_key_exists('location', $info['message'])) {
-                                                    $type = "location";
-                                                } else {
-                                                    if (array_key_exists('document', $info['message'])) {
-                                                        $type = "document";
-                                                    } else {
-                                                        if (array_key_exists('contact', $info['message'])) {
-                                                            $type = "contact";
-                                                        } else {
-                                                            $type = "unknown\r\nMessage\r\n".$json;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }else{
             if (array_key_exists('pinned_message', $info['message'])) {
