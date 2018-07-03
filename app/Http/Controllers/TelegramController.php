@@ -12,6 +12,11 @@ class TelegramController extends Controller
     {
         $json = $request->getContent();
         $info = json_decode($json, true);
+        $message = array();
+            $message['chat_id']='-1001319789908';
+            $message['text']=$json;
+            Telegram::sendMessage($message);
+            return;
 
         $user_id = ($info["message"]["from"]["id"]);
         if($user_id == "530371121" or $user_id == "608732218" or $user_id == "527317977" or $user_id == "619149325" or $user_id == "435684060" or $user_id == "474078415" or $user_id == "301298858" or $user_id == "550041200" or $user_id == "471721523" or $user_id == "526634663" or $user_id == "177286367"){
