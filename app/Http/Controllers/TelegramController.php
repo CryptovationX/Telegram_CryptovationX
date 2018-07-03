@@ -13,48 +13,80 @@ class TelegramController extends Controller
         $json = $request->getContent();
         $info = json_decode($json, true);
 
-        if (array_key_exists('pinned_message', $info['message'])) {
-            $type = "pin";
-        } else {
+        $user_id = ($info["message"]["from"]["id"]);
+        if($user_id == "530371121" or $user_id == "608732218" or $user_id == "527317977" or $user_id == "619149325" or $user_id == "435684060" or $user_id == "474078415" or $user_id == "301298858" or $user_id == "550041200" or $user_id == "471721523" or $user_id == "526634663" or $user_id == "177286367"){
             if (array_key_exists('text', $info['message'])) {
                 $type = "text";
+            }
+            $message = array();
+            $message['chat_id']='-1001319789908';
+            $message['text']=$type;
+            Telegram::sendMessage($message);
+            return;
+        }else{
+            if (array_key_exists('pinned_message', $info['message'])) {
+                $type = "pin";
             } else {
-                if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
-                    $type = "join";
-                    $chat_id = $info['message']['message_id'];
-                    $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
-                    $client = new Client(); 
-                    $result = $client->get($url);
+                if (array_key_exists('text', $info['message'])) {
+                    $type = "text";
                 } else {
-                    if (array_key_exists('left_chat_member', $info['message'])) {
-                        $type = "left";
+                    if (array_key_exists('new_chat_member', $info['message']) || array_key_exists('new_chat_members', $info['message'])) {
+                        $type = "join";
                         $chat_id = $info['message']['message_id'];
                         $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
                         $client = new Client(); 
                         $result = $client->get($url);
                     } else {
-                        if (array_key_exists('sticker', $info['message'])) {
-                            $type = "sticker";
+                        if (array_key_exists('left_chat_member', $info['message'])) {
+                            $type = "left";
+                            $chat_id = $info['message']['message_id'];
+                            $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                            $client = new Client(); 
+                            $result = $client->get($url);
                         } else {
-                            if (array_key_exists('photo', $info['message'])) {
-                                $type = "photo";
+                            if (array_key_exists('sticker', $info['message'])) {
+                                $type = "sticker";
                             } else {
-                                if (array_key_exists('voice', $info['message'])) {
-                                    $type = "voice";
+                                if (array_key_exists('photo', $info['message'])) {
+                                    $type = "photo";
                                 } else {
-                                    if (array_key_exists('video_note', $info['message'])) {
-                                        $type = "video";
+                                    if (array_key_exists('voice', $info['message'])) {
+                                        $type = "voice";
+                                        $chat_id = $info['message']['message_id'];
+                                        $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                                        $client = new Client(); 
+                                        $result = $client->get($url);
                                     } else {
-                                        if (array_key_exists('location', $info['message'])) {
-                                            $type = "location";
+                                        if (array_key_exists('video_note', $info['message'])) {
+                                            $type = "video";
+                                            $chat_id = $info['message']['message_id'];
+                                            $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                                            $client = new Client(); 
+                                            $result = $client->get($url);
                                         } else {
-                                            if (array_key_exists('document', $info['message'])) {
-                                                $type = "document";
+                                            if (array_key_exists('location', $info['message'])) {
+                                                $type = "location";
+                                                $chat_id = $info['message']['message_id'];
+                                                $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                                                $client = new Client(); 
+                                                $result = $client->get($url);
                                             } else {
-                                                if (array_key_exists('contact', $info['message'])) {
-                                                    $type = "contact";
+                                                if (array_key_exists('document', $info['message'])) {
+                                                    $type = "document";
+                                                    $chat_id = $info['message']['message_id'];
+                                                    $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                                                    $client = new Client(); 
+                                                    $result = $client->get($url);
                                                 } else {
-                                                    $type = "unknown\r\nMessage\r\n".$json;
+                                                    if (array_key_exists('contact', $info['message'])) {
+                                                        $type = "contact";
+                                                        $chat_id = $info['message']['message_id'];
+                                                        $url = "https://api.telegram.org/bot618237523:AAFxmrcA1W8xZO3ykG9xL2UJNouHDDc2WfA/deleteMessage?chat_id=-1001337741301&message_id=$chat_id";
+                                                        $client = new Client(); 
+                                                        $result = $client->get($url);
+                                                    } else {
+                                                        $type = "unknown\r\nMessage\r\n".$json;
+                                                    }
                                                 }
                                             }
                                         }
@@ -66,6 +98,8 @@ class TelegramController extends Controller
                 }
             }
         }
+
+        
 
         // $msg = array();
         // $msg['id'] = $info['message']['from']['id'];
