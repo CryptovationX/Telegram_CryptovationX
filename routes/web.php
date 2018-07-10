@@ -19,3 +19,13 @@ Route::get('/test', "TelegramController@test");
 Route::any('/getuser', "TelegramUserController@test");
 
 Route::any('/webhooks', "TelegramController@receive");
+
+//TelegramBoardcast
+Route::post('/success', "TelegramBoardcastController@boardcast")->name('boardcast.success');
+Route::get('/boardcast', "TelegramBoardcastController@index");
+Route::get('/tb', "TelegramBoardcastController@test");
+
+//TelegramAutoReply
+Route::post('/save', "TelegramAutoReplyController@store");
+Route::get('/autoreply', "TelegramAutoReplyController@index");
+Route::get('/ta', "TelegramAutoReplyController@test");
